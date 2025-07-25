@@ -1,17 +1,21 @@
 #!/bin/bash
 
-# Source and Destination
-SRC_DIR="/home/front-end-user/front-end-data/"
-DEST_USER="back-end-user"
-DEST_IP="10.128.0.33"
-DEST_DIR="/home/back-end-user/frond-end-server-backup"
+# Local source directory
+SRC_DIR="/home/front-end-user/front-end-data"
 
-# Run rsync to copy data
-rsync -avz -e ssh "$SRC_DIR" "${DEST_USER}@${DEST_IP}:${DEST_DIR}"
+# Remote destination
+REMOTE_USER="back-end-user"
+REMOTE_HOST="10.128.0.33"
+REMOTE_DIR="/home/back-end-user/front-end-server-backup"
 
-# Exit status
+echo "🔄 Copying files from $SRC_DIR to $REMOTE_USER@$REMOTE_HOST:$REMOTE_DIR..."
+
+# Perform the copy
+scp -r "$SRC_DIR"/* "$REMOTE_USER@$REMOTE_HOST:$REMOTE_DIR"
+
+# Check if copy succeeded
 if [ $? -eq 0 ]; then
-  echo "✅ Backup completed successfully."
+  echo "✅ Files copied successfully!"
 else
-  echo "❌ Backup failed."
+  echo "❌ Failed to copy files!"
 fi
