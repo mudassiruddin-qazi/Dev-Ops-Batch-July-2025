@@ -1,0 +1,39 @@
+Updated Backend Code
+  sudo apt update
+  sudo apt install nodejs npm -y
+  mkdir backend-app && cd backend-app
+  npm init -y
+  npm install express body-parser cors
+Create server.js:
+nano server.js
+---
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+
+const app = express();
+const PORT = 3000;
+
+app.use(cors());
+app.use(bodyParser.json());
+
+app.post("/submit", (req, res) => {
+  const formData = req.body;
+  console.log("Received Data:", formData);
+
+  // TODO: Save to database
+  res.json({ message: "Enrollment submitted successfully!" });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
+---
+node server.js
+==============================
+Updated Frontend Code 
+  sudo apt update
+  sudo apt install nginx -y
+  sudo nano /var/www/html/index.html
+
+
