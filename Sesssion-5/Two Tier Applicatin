@@ -29,11 +29,14 @@ app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
 ---
-node server.js
+node server.js --- to see the data
 ==============================
 Updated Frontend Code 
   sudo apt update
   sudo apt install nginx -y
   sudo nano /var/www/html/index.html
+
+--------------------
+
 
 
